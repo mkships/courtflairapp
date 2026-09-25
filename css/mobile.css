@@ -34,3 +34,5 @@ h3.sec{margin-top:22px}
 .steps{gap:4px 14px}
 /* the big button already says "Show controls" */
 .dock.collapsed .dock-toggle{display:none}
+/* announcements (point won/lost, match over): centre across the stacked column */
+.dock.moment .dock-sit{align-items:center}
