@@ -76,9 +76,9 @@ const RULES = {
 };
 
 const STYLES = {
-  agg:  { name:'Aggressive Baseliner', lower:'aggressive baseliner', blurb:'Takes the ball early from the baseline, dictates with pace, and moves in to finish on a volley.' },
-  all:  { name:'All-Court', lower:'all-court player', blurb:'Builds with variety (slice, angles, drop shots) and heads for the net whenever the ball sits up.' },
-  moon: { name:'Moonballer', lower:'moonballer', blurb:'Heavy, high and deep. Lives well behind the baseline, makes you hit one more ball, rarely comes forward. Counterpunchers and defensive baseliners play this way too.' }
+  agg:  { name:'Aggressive Baseliner', lower:'aggressive baseliner', blurb:'Takes the ball early from the baseline, dictates with pace, and moves in to finish on a volley.', short:'Takes it early, dictates with pace, finishes at the net.' },
+  all:  { name:'All-Court', lower:'all-court player', blurb:'Builds with variety (slice, angles, drop shots) and heads for the net whenever the ball sits up.', short:'Mixes slice, angles and drops, and attacks the net.' },
+  moon: { name:'Moonballer', lower:'moonballer', blurb:'Heavy, high and deep. Lives well behind the baseline, makes you hit one more ball, rarely comes forward. Counterpunchers and defensive baseliners play this way too.', short:'High, heavy and deep. Makes you hit one more ball.' }
 };
 
 /* Style icons: a tiny side view of each style's signature ball (ground, net, flight) */

@@ -1062,7 +1062,7 @@ function renderCoach(){
   const ph = S.phase;
   $('#setupModal').hidden = !S.setupOpen;
   $('#resume').hidden = !(S.matchStarted && ph !== 'over');
-  $('#startLabel').textContent = S.matchStarted ? 'Start new match' : 'Start match';
+  $('#startLabel').innerHTML = S.matchStarted ? '<span class="lg">Start new match</span><span class="sh">New match</span>' : 'Start match';
   $('#reportModal').hidden = !(S.reportOpen && ph === 'over');
   if (S.reportOpen && ph === 'over') renderReport();
 
@@ -1125,8 +1125,9 @@ function renderDock(){
   else {
     const label = k === 'serve' ? `${S.serve.no === 1 ? 'First' : 'Second'} serve` : k === 'receive' ? 'Their serve'
       : S.sit.isReturn ? { attack: 'Return: attack', neutral: 'Return', defend: 'Return: defend' }[k] : { attack: 'Attack ball', neutral: 'Neutral', defend: 'Defend', volley: 'At the net' }[k];
-    const lead = S.replyDesc ? `<span class="muted">${esc(S.replyDesc)}</span> ` : '';
-    html = `<span class="pill ${k === 'receive' ? 'serve' : k}">${label}</span><p>${lead}${esc(sitText())}</p>`;
+    const lead = S.replyDesc ? `<span class="sit-reply">${esc(S.replyDesc)}</span><span class="sit-arrow" aria-hidden="true">→</span>` : '';
+    const st = sitText(), [, head, rest] = st.match(/^(.+?\.)(?:\s+(.*))?$/) || [, st];
+    html = `<span class="pill ${k === 'receive' ? 'serve' : k}">${label}</span><p>${lead}<b class="sit-head">${esc(head)}</b>${rest ? ` <span class="sit-rest">${esc(rest)}</span>` : ''}</p>`;
   }
   const d = $('#dock');
   d.classList.toggle('moment', ph === 'setup' || ph === 'between' || ph === 'over');
@@ -1238,7 +1239,7 @@ function render(){ renderBoard(); drawDynamic(); renderControls(); renderCoach()
 function buildSetup(){
   try { const s = localStorage.getItem('courtFlair.style'); if (s && STYLES[s]) S.style = s; } catch (e) {}
   $('#stylePick').innerHTML = Object.entries(STYLES).map(([k, v]) =>
-    `<div><input type="radio" name="style" id="style-${k}" value="${k}" ${k === S.style ? 'checked' : ''}><label for="style-${k}">${styleIcon(k)}<span><b>${v.name}</b><span>${v.blurb}</span></span></label></div>`).join('');
+    `<div><input type="radio" name="style" id="style-${k}" value="${k}" ${k === S.style ? 'checked' : ''}><label for="style-${k}">${styleIcon(k)}<span><b>${v.name}</b><span><span class="lg">${v.blurb}</span><span class="sh">${v.short}</span></span></span></label></div>`).join('');
   $('#oppPick').innerHTML = [['random', 'Random'], ...Object.entries(STYLES).map(([k, v]) => [k, v.name])].map(([k, n]) =>
     `<span><input type="radio" name="opp" id="opp-${k}" value="${k}" ${k === S.oppChoice ? 'checked' : ''}><label for="opp-${k}">${STYLES[k] ? styleIcon(k, 'sm') : '<span class="sicon sm s-rand"><i data-lucide="shuffle"></i></span>'}${n}</label></span>`).join('');
   $('#stylePick').addEventListener('change', e => { S.style = e.target.value; renderBoard(); });

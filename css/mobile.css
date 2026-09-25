@@ -1,0 +1,34 @@
+/* Phone layout (loaded only at max-width 640px). Desktop rules live in styles.css. */
+
+/* short copy instead of long */
+.lg{display:none}
+.sh{display:inline}
+
+/* header: brand left, icon-only buttons right, tagline below */
+header.top{margin-bottom:32px; flex-wrap:wrap}
+.brand{font-size:20px}
+.tbtn{position:relative; width:40px; height:40px; padding:0; justify-content:center}
+.tbtn svg.lucide{width:18px; height:18px}
+.tbtn .lbl{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+.arena{grid-template-columns:minmax(0,1fr)}
+
+/* setup modal */
+.modal-card{padding:22px 20px 0}
+h3.sec{margin-top:22px}
+.styles label{padding:11px 40px 11px 12px; gap:12px}
+.opps, #modePick{display:grid; width:100%; grid-auto-flow:row; grid-template-columns:repeat(2,minmax(0,1fr))}
+.opps label{padding:10px 8px; font-size:13.5px; white-space:normal; text-align:center}
+#oppPick label{flex-direction:column; gap:4px}
+/* buttons stay in view while the options scroll */
+.cta{position:sticky; bottom:0; flex-wrap:nowrap; gap:8px; margin:20px -20px 0; padding:12px 20px calc(16px + env(safe-area-inset-bottom, 0px)); background:var(--surface); box-shadow:0 -10px 14px -10px rgba(0,0,0,.18)}
+.cta .go, .cta .go:only-child, .cta .go:has(+ [hidden]){flex:1 1 0; min-width:0; min-height:48px; padding:0 14px; font-size:15px}
+
+/* dock */
+.dock{padding-inline:12px}
+.dock-row{grid-template-columns:minmax(0,1fr)}
+.shot small{display:none}
+.dock-sit{flex-direction:column; gap:2px; font-size:14px}
+.steps{gap:4px 14px}
+/* the big button already says "Show controls" */
+.dock.collapsed .dock-toggle{display:none}

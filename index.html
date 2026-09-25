@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Big+Shoulders+Display:wght@800&family=Figtree:wght@700&display=swap">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/mobile.css" media="(max-width:640px)">
 </head>
 <body>
 <div class="app">
@@ -18,8 +19,8 @@
     <div class="brand"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D9F24B" stroke="#9FB321" stroke-width="1"/><path d="M4.2 8.5C8.5 11 8.5 17 4.2 19.5M23.8 8.5C19.5 11 19.5 17 23.8 19.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>CourtFlair</div>
     <p class="tag">Tennis is hard. Every shot is a choice. Sharpen yours and become the player you want to be.</p>
     <div class="top-actions">
-      <button class="tbtn" type="button" id="soundBtn" aria-pressed="true"><i data-lucide="volume-2" class="on"></i><i data-lucide="volume-x" class="off"></i><span id="soundLabel">Sound on</span></button>
-      <button class="tbtn" type="button" id="settingsBtn"><i data-lucide="settings-2"></i>Match settings</button>
+      <button class="tbtn" type="button" id="soundBtn" aria-pressed="true" title="Sound"><i data-lucide="volume-2" class="on"></i><i data-lucide="volume-x" class="off"></i><span class="lbl" id="soundLabel">Sound on</span></button>
+      <button class="tbtn" type="button" id="settingsBtn"><i data-lucide="settings-2"></i><span class="lbl">Match settings</span></button>
     </div>
   </header>
 
@@ -109,11 +110,11 @@
     <h3 class="sec">Points start with</h3>
     <div class="opps" id="modePick">
       <span><input type="radio" name="mode" id="mode-serve" value="serve" checked><label for="mode-serve"><i data-lucide="zap"></i>Serve</label></span>
-      <span><input type="radio" name="mode" id="mode-rally" value="rally"><label for="mode-rally"><i data-lucide="repeat"></i>Rally ball from the center</label></span>
+      <span><input type="radio" name="mode" id="mode-rally" value="rally"><label for="mode-rally"><i data-lucide="repeat"></i>Rally</label></span>
     </div>
     <div class="cta">
       <button class="go start" id="start" type="button"><i data-lucide="play"></i><span id="startLabel">Start match</span></button>
-      <button class="go ghost" id="resume" type="button" hidden>Back to the match</button>
+      <button class="go ghost" id="resume" type="button" hidden><span class="lg">Back to the match</span><span class="sh">Resume</span></button>
     </div>
   </div>
 </div>

@@ -59,13 +59,15 @@ button:focus-visible, .shot:focus-visible{outline:3px solid var(--accent); outli
 svg.lucide{width:16px; height:16px; stroke-width:2; flex:none}
 .num{font-family:var(--body); font-variation-settings:'wdth' 62; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
 
+/* short/long copy pairs: mobile.css swaps them */
+.sh{display:none}
+
 /* ===== Layout ===== */
 .app{max-width:1440px; margin:0 auto; padding-inline:16px; padding-block:16px calc(var(--dock-h, 220px) + 32px)}
 header.top{display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin-bottom:56px; color:var(--surround-ink)}
 .brand{display:flex; align-items:center; gap:10px; font:800 22px/1 var(--body); font-variation-settings:'wdth' 118; letter-spacing:-.015em}
 .brand svg{width:28px; height:28px}
 .tag{order:3; flex-basis:100%; font-size:15px; line-height:1.45; opacity:.92}
-@media (max-width:640px){ header.top{margin-bottom:32px} }
 .top-actions{margin-left:auto; display:flex; gap:8px}
 .tbtn{display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 14px; font-weight:600; font-size:13.5px; color:var(--surround-ink); background:transparent; border:2px solid var(--surround-ink); border-radius:0; cursor:pointer; transition:background .15s, color .15s}
 .tbtn:hover{background:var(--surround-ink); color:var(--surround)}
@@ -74,7 +76,6 @@ header.top{display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; marg
 .arena{display:grid; grid-template-columns:minmax(240px,1fr) minmax(0,660px) minmax(240px,1fr); gap:20px; align-items:start}
 .side{position:sticky; top:16px; display:flex; flex-direction:column; gap:12px; min-width:0}
 @media (max-width:1080px){ .arena{grid-template-columns:repeat(2,minmax(0,1fr))} .court-col{grid-column:1 / -1; order:-1} .side{position:static} }
-@media (max-width:640px){ .arena{grid-template-columns:minmax(0,1fr)} }
 .court-col{display:flex; flex-direction:column; gap:0; min-width:0}
 .card{background:var(--surface); padding:20px; border-radius:0}
 
@@ -162,6 +163,10 @@ svg#court{display:block; width:100%; height:auto; max-height:max(440px, calc(100
 .dock-top .dock-sit{flex:1; min-width:0}
 .dock-sit{display:flex; gap:12px; align-items:baseline; font-size:14.5px; line-height:1.45}
 .dock-sit .pill{margin:0; flex:none}
+.sit-reply{color:var(--ink-3); font-size:.93em}
+.sit-arrow{margin:0 .45em; color:var(--ink-3)}
+.sit-head{font-weight:650; color:var(--ink)}
+.sit-rest{color:var(--ink-2)}
 .dock-toggle{flex:none; display:inline-flex; align-items:center; gap:7px; height:28px; padding:0 2px; font-weight:600; font-size:13px; color:var(--ink-2); background:none; border:0; cursor:pointer}
 .dock-toggle:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 .dock-toggle::before{content:''; width:6px; height:6px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:translateY(-2px) rotate(45deg)}
@@ -200,7 +205,6 @@ svg#court{display:block; width:100%; height:auto; max-height:max(440px, calc(100
 .shot[aria-pressed="true"]:hover{background:color-mix(in srgb, var(--accent) 88%, #000)}
 .shot[aria-pressed="true"] small{color:var(--accent-ink); opacity:.85}
 .shot:disabled{color:var(--ink-3); cursor:not-allowed}
-@media (max-width:560px){ .dock-row{grid-template-columns:minmax(0,1fr)} .dock{padding-inline:12px} .shot small{display:none} .dock-sit{flex-direction:column; gap:2px; font-size:14px} .steps{gap:4px 14px} }
 .pf-head{display:flex; justify-content:space-between; gap:10px; font-size:12.5px; color:var(--ink-2); font-weight:600}
 .pf-head b{color:var(--ink); font-size:13px; font-weight:600}
 .pf-box{position:relative; height:34px; margin-bottom:14px}
@@ -288,20 +292,20 @@ h3.sec{margin-top:26px; font-size:15px}
 .styles label .sicon svg{width:33px; height:21px}
 .styles label b{display:block; font-size:15px; font-weight:700; font-variation-settings:'wdth' 110; color:var(--ink)}
 .styles label span{font-size:13px; color:var(--ink-2); line-height:1.4}
-.opps{display:flex; flex-wrap:wrap; max-width:100%; padding:0 2px 2px 0}
-.opps > span{display:flex; margin:0 -2px -2px 0}
-.opps label{display:inline-flex; align-items:center; gap:7px; padding:8px 14px; font-size:14px; font-weight:600; color:var(--ink); background:var(--surface); border:2px solid var(--line-2); cursor:pointer; transition:background .12s, color .12s}
+.opps{display:inline-grid; grid-auto-flow:column; grid-auto-columns:auto; max-width:100%; gap:2px; background:var(--line-2); border:2px solid var(--line-2)}
+#modePick{grid-auto-columns:1fr}
+.opps > span{display:flex; min-width:0}
+.opps label{flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:9px 16px; font-size:14px; font-weight:600; color:var(--ink); background:var(--surface); cursor:pointer; white-space:nowrap; transition:background .12s, color .12s}
 .opps input:not(:checked) + label:hover{background:var(--surface-2)}
 .opps label svg.lucide{width:15px; height:15px}
-.opps input:checked + label{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); position:relative; z-index:1}
+.opps input:checked + label{background:var(--accent); color:var(--accent-ink)}
 .opps input:checked + label .sicon{color:var(--accent-ink)}
-.opps input:focus-visible + label{outline:3px solid var(--accent); outline-offset:2px; position:relative; z-index:1}
+.opps input:focus-visible + label{outline:3px solid var(--accent); outline-offset:-5px}
 .cta{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:28px}
 .cta .go{width:auto; min-width:min(220px, 100%); min-height:52px; font-size:16px}
 .cta .go:only-child, .cta .go:has(+ [hidden]){min-width:min(300px, 100%)}
 .go.start svg.lucide{width:17px; height:17px; fill:currentColor}
 #resume{order:-1}
-@media (max-width:480px){ .cta .go{flex:1 1 100%} }
 /* compact "how to play" block at the top of the left panel */
 .guide h3 + h3, .guide .turn + h3{margin-top:18px}
 .guide.closed{padding-block:14px}
