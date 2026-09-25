@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CourtFlair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Big+Shoulders+Display:wght@800&family=Figtree:wght@700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D9F24B" stroke="#9FB321" stroke-width="1"/><path d="M4.2 8.5C8.5 11 8.5 17 4.2 19.5M23.8 8.5C19.5 11 19.5 17 23.8 19.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>CourtFlair</div>
+    <p class="tag">Tennis strategy scored against the player you want to be.</p>
+    <div class="top-actions">
+      <button class="tbtn" type="button" id="soundBtn" aria-pressed="true"><i data-lucide="volume-2" class="on"></i><i data-lucide="volume-x" class="off"></i><span id="soundLabel">Sound on</span></button>
+      <button class="tbtn" type="button" id="settingsBtn"><i data-lucide="settings-2"></i>Match settings</button>
+    </div>
+  </header>
+
+  <main class="arena">
+    <aside class="side side-l" aria-label="How to play and last decision">
+      <div class="card guide" id="guide">
+        <button class="fold" id="guideToggle" type="button" aria-expanded="true" aria-controls="guideBody"><span>How to play</span><i class="pm" aria-hidden="true"></i></button>
+        <div id="guideBody">
+        <h3>How a turn works</h3>
+        <ol class="turn">
+          <li><span class="ti">1</span><p><b>Aim.</b> Tap a zone on their side. On serve: wide, body or T.</p></li>
+          <li><span class="ti">2</span><p><b>Shot.</b> Drive, loop or slice. On serve: flat, slice or kick.</p></li>
+          <li><span class="ti">3</span><p><b>Recover.</b> Tap where you move after the shot.</p></li>
+        </ol>
+        <h3>How you're scored</h3>
+        <div class="wbar">
+          <span style="flex:40; --c:var(--accent)"><b>40%</b><small>Fundamentals</small></span>
+          <span style="flex:40; --c:var(--board)"><b>40%</b><small>Style fit</small></span>
+          <span style="flex:20; --c:var(--surround)"><b>20%</b><small>Matchup</small></span>
+        </div>
+        <p class="rules">Tiebreak to 7, win by 2. You serve first, then two points each. Both players are right-handed.</p>
+        </div>
+      </div>
+      <div class="card" id="feedback"></div>
+    </aside>
+
+    <section class="court-col" aria-label="Court">
+      <div class="board" id="board"></div>
+      <div class="stage">
+      <svg id="court" viewBox="-30 -26 160 160" role="img" aria-label="Tennis court seen from behind your baseline, with stands on both sides. The opponent's side is at the top, split into target zones.">
+        <defs>
+          <linearGradient id="surGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6547"/><stop offset="1" stop-color="#4E8A67"/></linearGradient>
+          <linearGradient id="courtGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#284F7B"/><stop offset="1" stop-color="#3466A0"/></linearGradient>
+          <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C1E15"/><stop offset="1" stop-color="#173627"/></linearGradient>
+          <pattern id="hatch" width="1.3" height="1.3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="1.3" height="1.3" fill="rgba(255,255,255,0)"/><line x1="0" y1="0" x2="0" y2="1.3" stroke="rgba(255,255,255,.22)" stroke-width=".42"/></pattern>
+          <pattern id="mesh" width=".7" height=".7" patternUnits="userSpaceOnUse"><path d="M0 0H.7M0 0V.7" stroke="rgba(8,12,18,.55)" stroke-width=".1" fill="none"/></pattern>
+        </defs>
+        <g id="static"></g>
+        <g id="stands"></g>
+        <g id="zones"></g>
+        <g id="ground"></g>
+        <g id="far"></g>
+        <g id="net"></g>
+        <g id="near"></g>
+        <g id="fx"></g>
+      </svg>
+      </div>
+      <div class="legend"><span><i class="sw h"></i>Sideline zones: more pressure, more errors</span><span><i class="sw a"></i>Ball flight preview</span><span><i class="sw c"></i>Their angles after your shot</span></div>
+    </section>
+
+    <aside class="side side-r" aria-label="This point">
+      <div class="card" id="pointCard"></div>
+      <div class="card meter" id="meter"></div>
+    </aside>
+  </main>
+</div>
+
+<div class="dock" id="dock">
+  <div class="dock-top">
+    <div class="dock-sit" id="dockSit" aria-live="polite"></div>
+    <button class="dock-toggle" id="dockToggle" type="button" aria-expanded="true" aria-controls="dockDecide">Hide controls</button>
+  </div>
+  <div class="dock-decide" id="dockDecide">
+    <div class="steps" id="steps"></div>
+    <div class="pf">
+      <div class="pf-head"><span>Shot profile, side view</span><b id="pfNote"></b></div>
+      <div class="pf-box">
+        <svg id="profile" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <span class="pf-l" style="left:12%">You</span><span class="pf-l" style="left:51%">Net</span><span class="pf-l" style="left:90%">Them</span>
+      </div>
+    </div>
+  </div>
+  <div class="dock-row">
+    <div class="shots" id="shots" role="group" aria-label="Shot type"></div>
+    <button class="go" id="go" type="button">Play shot</button>
+  </div>
+</div>
+
+<div class="modal" id="setupModal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="setupTitle">
+    <h2 id="setupTitle">Set up your match</h2>
+    <p class="muted" style="margin-bottom:16px">Every decision is scored against the style you pick, not one textbook answer.</p>
+    <h3 class="sec">Your style</h3>
+    <div class="styles" id="stylePick"></div>
+    <h3 class="sec">Opponent</h3>
+    <div class="opps" id="oppPick"></div>
+    <h3 class="sec">Points start with</h3>
+    <div class="opps" id="modePick">
+      <span><input type="radio" name="mode" id="mode-serve" value="serve" checked><label for="mode-serve"><i data-lucide="zap"></i>Serve</label></span>
+      <span><input type="radio" name="mode" id="mode-rally" value="rally"><label for="mode-rally"><i data-lucide="repeat"></i>Rally ball from the center</label></span>
+    </div>
+    <div class="cta">
+      <button class="go start" id="start" type="button"><i data-lucide="play"></i><span id="startLabel">Start match</span></button>
+      <button class="go ghost" id="resume" type="button" hidden>Back to the match</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="reportModal" hidden>
+  <div class="modal-card wide" id="report" role="dialog" aria-modal="true" aria-label="Match report"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
