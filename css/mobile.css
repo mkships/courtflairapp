@@ -5,8 +5,10 @@
 .sh{display:inline}
 
 /* header: brand left, icon-only buttons right, tagline below */
-header.top{margin-bottom:32px; flex-wrap:wrap}
-.brand{font-size:20px}
+header.top{padding-top:10px; margin-bottom:36px; flex-wrap:wrap; row-gap:12px}
+.brand{font-size:22px; gap:10px}
+.brand svg{width:30px; height:30px}
+.tag{font-size:15.5px}
 .tbtn{position:relative; width:40px; height:40px; padding:0; justify-content:center}
 .tbtn svg.lucide{width:18px; height:18px}
 .tbtn .lbl{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}

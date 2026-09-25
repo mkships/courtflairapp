@@ -64,12 +64,12 @@ svg.lucide{width:16px; height:16px; stroke-width:2; flex:none}
 
 /* ===== Layout ===== */
 .app{max-width:1440px; margin:0 auto; padding-inline:16px; padding-block:16px calc(var(--dock-h, 220px) + 32px)}
-header.top{display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin-bottom:56px; color:var(--surround-ink)}
-.brand{display:flex; align-items:center; gap:10px; font:800 22px/1 var(--body); font-variation-settings:'wdth' 118; letter-spacing:-.015em}
-.brand svg{width:28px; height:28px}
-.tag{order:3; flex-basis:100%; font-size:15px; line-height:1.45; opacity:.92}
+header.top{display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px; padding-top:28px; margin-bottom:72px; color:var(--surround-ink)}
+.brand{display:flex; align-items:center; gap:12px; font:800 32px/1 var(--body); font-variation-settings:'wdth' 118; letter-spacing:-.015em}
+.brand svg{width:38px; height:38px}
+.tag{order:3; flex-basis:100%; font-size:18px; font-weight:500; line-height:1.45; opacity:.95}
 .top-actions{margin-left:auto; display:flex; gap:8px}
-.tbtn{display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 14px; font-weight:600; font-size:13.5px; color:var(--surround-ink); background:transparent; border:2px solid var(--surround-ink); border-radius:0; cursor:pointer; transition:background .15s, color .15s}
+.tbtn{display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 14px; font-weight:600; font-size:13.5px; color:var(--surround-ink); background:transparent; border:2px solid var(--surround-ink); border-radius:8px; cursor:pointer; transition:background .15s, color .15s}
 .tbtn:hover{background:var(--surround-ink); color:var(--surround)}
 .tbtn .off{display:none} .tbtn[aria-pressed="false"] .on{display:none} .tbtn[aria-pressed="false"] .off{display:inline-block}
 .tbtn[aria-pressed="false"]{border-style:dashed}
@@ -281,7 +281,7 @@ svg#court{display:block; width:100%; height:auto; max-height:max(440px, calc(100
 h3.sec{margin-top:26px; font-size:15px}
 .styles{display:grid; gap:8px}
 .styles input, .opps input{position:absolute; opacity:0; pointer-events:none}
-.styles label{position:relative; display:flex; gap:14px; align-items:flex-start; padding:12px 44px 12px 14px; border:2px solid var(--line-2); background:var(--surface); cursor:pointer; transition:border-color .12s, background .12s}
+.styles label{position:relative; display:flex; gap:14px; align-items:flex-start; padding:12px 44px 12px 14px; border:2px solid var(--line-2); border-radius:8px; background:var(--surface); cursor:pointer; transition:border-color .12s, background .12s}
 .styles input:not(:checked) + label:hover::after{border-color:var(--sc, var(--accent)); background:color-mix(in srgb, var(--sc, var(--accent)) 30%, var(--surface))}
 .styles label::after{content:''; position:absolute; top:14px; right:14px; width:18px; height:18px; border-radius:50%; border:2px solid var(--line-2); background:var(--surface); box-sizing:border-box}
 .styles input:checked + label{border-color:var(--sc, var(--accent)); box-shadow:inset 0 0 0 1px var(--sc, var(--accent))}
@@ -292,7 +292,7 @@ h3.sec{margin-top:26px; font-size:15px}
 .styles label .sicon svg{width:33px; height:21px}
 .styles label b{display:block; font-size:15px; font-weight:700; font-variation-settings:'wdth' 110; color:var(--ink)}
 .styles label span{font-size:13px; color:var(--ink-2); line-height:1.4}
-.opps{display:inline-grid; grid-auto-flow:column; grid-auto-columns:auto; max-width:100%; gap:2px; background:var(--line-2); border:2px solid var(--line-2)}
+.opps{display:inline-grid; grid-auto-flow:column; grid-auto-columns:auto; max-width:100%; gap:2px; background:var(--line-2); border:2px solid var(--line-2); border-radius:8px; overflow:hidden}
 #modePick{grid-auto-columns:1fr}
 .opps > span{display:flex; min-width:0}
 .opps label{flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:9px 16px; font-size:14px; font-weight:600; color:var(--ink); background:var(--surface); cursor:pointer; white-space:nowrap; transition:background .12s, color .12s}
@@ -310,7 +310,7 @@ h3.sec{margin-top:26px; font-size:15px}
 .guide h3 + h3, .guide .turn + h3{margin-top:18px}
 .guide.closed{padding-block:14px}
 .fold{display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; padding:0; background:none; border:0; cursor:pointer; text-align:left; color:var(--ink); font-size:15px; font-weight:700; font-variation-settings:'wdth' 112}
-.pm{position:relative; flex:none; width:26px; height:26px; border:2px solid var(--line-2); box-sizing:border-box; transition:border-color .12s}
+.pm{position:relative; flex:none; width:26px; height:26px; border:2px solid var(--line-2); border-radius:6px; box-sizing:border-box; transition:border-color .12s}
 .pm::before, .pm::after{content:''; position:absolute; left:50%; top:50%; width:10px; height:2px; background:currentColor; transform:translate(-50%,-50%)}
 .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
 .fold[aria-expanded="true"] .pm::after{display:none}
